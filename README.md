@@ -1,75 +1,92 @@
-# React + TypeScript + Vite
+# ersatzteilstore24
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A product catalogue web app with real-time search, pagination, and product detail view — built with React, TypeScript, Redux Toolkit, and Bootstrap 5.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **TypeScript 6** + **Vite 8**
+- **Redux Toolkit** + **RTK Query** — state management and API calls
+- **React Router 6** — client-side routing with lazy loading
+- **Bootstrap 5** + **Reactstrap** — UI components
+- **SASS** — component-level styling
+- **dummyjson.com** — mock product API
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Product listing with card grid
+- Real-time search with 300ms debounce (server-side via API)
+- Page-based pagination with ellipsis navigation
+- Product detail view (image, description, rating, stock status, discount)
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Node.js** v20 or higher — check with `node -v`
+- **npm** v10 or higher — check with `npm -v`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clone the repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/rejtg21/ersatzteilstore24.git
+cd ersatzteilstore24
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Set up environment variables
+
+Create a `.env` file in the project root:
+
+```bash
+cp .env.example .env
+```
+
+Or create it manually with the following content:
+
+```env
+VITE_API_BASE_URL=https://dummyjson.com
+```
+
+> All Vite client-side environment variables must be prefixed with `VITE_`.
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The app will be available at **http://localhost:5173**
+
+---
+
+## Available Scripts
+
+| Script | Description |
+|---|---|
+| `npm run dev` | Start the development server with HMR |
+| `npm run build` | Type-check and build for production |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint across the project |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── config/          # Redux store, app config (env vars)
+│   ├── reducers/
+│   │   └── products/    # ProductsApi (RTK Query) + ProductsReducer
+│   ├── components/
+│   │   └── home/
+│   │       └── catalog/ # CatalogPage, ProductCard, ProductDetailPage
+│   └── shared/
+│       └── hooks/       # useDebounce
+└── main.tsx
 ```
