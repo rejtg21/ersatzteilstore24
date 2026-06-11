@@ -1,0 +1,59 @@
+.catalog-page {
+  &__header {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  &__logo-text {
+    color: #212529;
+  }
+
+  &__logo-badge {
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  &__search-bar {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    padding: 12px 0;
+  }
+
+  &__search-input {
+    max-width: 560px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &__title {
+    color: #212529;
+    font-weight: 600;
+  }
+
+  &__empty {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
